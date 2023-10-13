@@ -49,18 +49,9 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li class="active has-sub">
-                            <a class="js-arrow" href="index.html">
-                                <i class="fas fa-tachometer-alt"></i>Home Page
-                            </a>
-                        </li>
                         <li>
-                            <a href="category.html">
+                            <a href="{{ route('category#list') }}">
                                 <i class="fas fa-chart-bar"></i>Category</a>
-                        </li>
-                        <li>
-                            <a href="customerList.html">
-                                <i class="fas fa-chart-bar"></i>Customers</a>
                         </li>
                     </ul>
                 </nav>
@@ -131,7 +122,7 @@
                                                 alt="John Doe" />
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">Sithu</a>
+                                            <a class="js-acc-btn" href="#">{{ Auth::user()->name }}</a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
@@ -143,9 +134,10 @@
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#">sithu</a>
+                                                        <a href="#"
+                                                            class="js_acc_btn">{{ Auth::user()->name }}</a>
                                                     </h5>
-                                                    <span class="email">sithu@example.com</span>
+                                                    <span class="email">{{ Auth::user()->email }}</span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
@@ -155,14 +147,13 @@
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                {{-- <form action="{{ route('logout') }}" method="post" class="d-flex jusitfy-content-center">
+                                                <form action="{{ route('logout') }}" method="post" class="mt-3">
                                                     @csrf
-                                                    <button class="btn" text-white col-10" type="submit">
-                                                        <i class="zmdi zmdi-power"></i>Logout</a>
-                                                    </button>
-                                                </form> --}}
-                                                <a href="{{url('')}}">
-                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                                    <button class="btn" type="submit"><i
+                                                            class="zmdi zmdi-power"></i>Logout</button>
+                                                </form>
+                                                {{-- <a href="{{ url('logout') }}">
+                                                    <i class="zmdi zmdi-power"></i>Logout</a> --}}
                                             </div>
                                         </div>
                                     </div>
