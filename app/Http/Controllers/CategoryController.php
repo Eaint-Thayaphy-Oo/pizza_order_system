@@ -33,6 +33,14 @@ class CategoryController extends Controller
         return redirect()->route('category#list');
     }
 
+    //delete category
+    public function delete($id)
+    {
+        // dd($id);
+        Category::where('category_id', $id)->delete();
+        return back();
+    }
+
     //category validation check
     private function categoryValidationCheck($request)
     {
