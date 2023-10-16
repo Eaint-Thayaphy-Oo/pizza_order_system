@@ -26,13 +26,61 @@
                             </button>
                         </div>
                     </div>
-                    <div class="col-4 offset-8">
-                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            <i class="fa-solid fa-check"></i>Category Created!
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                aria-label="Close"></button>
+
+                    @if (session('createSuccess'))
+                        <div class="col-4 offset-8">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <i class="fa-solid fa-check"></i>{{ session('createSuccess') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        </div>
+                    @endif
+
+                    @if (session('deleteSuccess'))
+                        <div class="col-4 offset-8">
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <i class="fa-solid fa-check"></i>{{ session('deleteSuccess') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        </div>
+                    @endif
+
+                    @if (session('updateSuccess'))
+                        <div class="col-4 offset-8">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <i class="fa-solid fa-check"></i>{{ session('updateSuccess') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        </div>
+                    @endif
+
+                    <div class="row">
+                        <div class="col-3">
+                            <h4 class="text-secondary">Search Key : <span class="text-danger">{{ request('key') }}</span>
+                            </h4>
+                        </div>
+                        <div class="col-3 offset-9">
+                            <form action="{{ route('category#list') }}" method="get">
+                                @csrf
+                                <div class="d-flex my-3">
+                                    <input type="text" name="key" class="form-control" value="{{ request('key') }}"
+                                        placeholder="Search...">
+                                    <button class="btn bg-dark text-white" type="submit">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-1 offset-10 bg-white shadow-sm p-2 my-1 text-center">
+                                <h3><i class="fa-solid fa-database mr-2"> - {{ $categories->total() }}</i></h3>
+                            </div>
                         </div>
                     </div>
+
                     @if (count($categories) != 0)
                         <div class="table-responsive table-responsive-data2">
                             <table class="table table-data2 text-center">
@@ -47,7 +95,7 @@
                                 <tbody>
                                     @foreach ($categories as $category)
                                         <tr class="tr-shadow">
-                                            <td>{{ $category->category_id }}</td>
+                                            <td>{{ $category->id }}</td>
                                             <td>{{ $category->name }}</td>
                                             <td>{{ $category->created_at->format('j_F_Y') }}</td>
                                             <td>
@@ -56,11 +104,13 @@
                                                         title="Send">
                                                         <i class="zmdi zmdi-mail-send"></i>
                                                     </button>
-                                                    <button class="item" data-toggle="tooltip" data-placement="top"
-                                                        title="Edit">
-                                                        <i class="zmdi zmdi-edit"></i>
-                                                    </button>
-                                                    <a href="{{ route('category#delete', $category->category_id) }}">
+                                                    <a href="{{ route('category#edit', $category->id) }}">
+                                                        <button class="item" data-toggle="tooltip" data-placement="top"
+                                                            title="Edit">
+                                                            <i class="zmdi zmdi-edit"></i>
+                                                        </button>
+                                                    </a>
+                                                    <a href="{{ route('category#delete', $category->id) }}">
                                                         <button class="item" data-toggle="tooltip" data-placement="top"
                                                             title="Delete">
                                                             <i class="zmdi zmdi-delete"></i>
@@ -76,6 +126,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <div class="mt-3">
+                                {{ $categories->links() }}
+                            </div>
                         </div>
                     @else
                         <h3 class="text-secondary text-center mt-5">There is no Category Here!</h3>
