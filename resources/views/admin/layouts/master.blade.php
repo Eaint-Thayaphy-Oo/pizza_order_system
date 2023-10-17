@@ -125,8 +125,13 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="{{ asset('admin/images/icon/avatar-01.jpg') }}"
-                                                alt="John Doe" />
+                                            @if (Auth::user()->image == null)
+                                                <img src="{{ asset('image/default_user.webp') }}" alt=""
+                                                    class="img-thumbnail shadow-sm" />
+                                            @else
+                                                <img src="{{ asset('admin/images/icon/avatar-01.jpg') }}"
+                                                    alt="John Doe" />
+                                            @endif
                                         </div>
                                         <div class="content">
                                             <a class="js-acc-btn" href="#">{{ Auth::user()->name }}</a>
@@ -135,8 +140,13 @@
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="{{ asset('admin/images/icon/avatar-01.jpg') }}"
-                                                            alt="John Doe" />
+                                                        @if (Auth::user()->image == null)
+                                                            <img src="{{ asset('image/default_user.webp') }}"
+                                                                alt="" class="img-thumbnail shadow-sm" />
+                                                        @else
+                                                            <img src="{{ asset('admin/images/icon/avatar-01.jpg') }}"
+                                                                alt="John Doe" />
+                                                        @endif
                                                     </a>
                                                 </div>
                                                 <div class="content">
@@ -149,7 +159,7 @@
                                             </div>
                                             <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
-                                                    <a href="#">
+                                                    <a href="{{ route('admin#details') }}">
                                                         <i class="zmdi zmdi-account"></i>Account</a>
                                                 </div>
                                             </div>

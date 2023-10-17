@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
@@ -55,8 +56,11 @@ Route::middleware('auth')->group(function () {
         // });
 
         //admin account
-        Route::get('password/changePage', [AuthController::class, 'changePasswordPage'])->name('admin#changePasswordPage');
-        Route::post('change/password', [AuthController::class, 'changePassword'])->name('admin#changePassword');
+        Route::get('password/changePage', [AdminController::class, 'changePasswordPage'])->name('admin#changePasswordPage');
+        Route::post('change/password', [AdminController::class, 'changePassword'])->name('admin#changePassword');
+
+        //profile
+        Route::get('details', [AdminController::class, 'details'])->name('admin#details');
     });
 
     // Route::middleware(['admin_auth'])->group(function(){
