@@ -129,8 +129,8 @@
                                                 <img src="{{ asset('image/default_user.webp') }}" alt=""
                                                     class="img-thumbnail shadow-sm" />
                                             @else
-                                                <img src="{{ asset('admin/images/icon/avatar-01.jpg') }}"
-                                                    alt="John Doe" />
+                                                <img src="{{ asset('storage/' . Auth::user()->image) }}"
+                                                    alt="" />
                                             @endif
                                         </div>
                                         <div class="content">
@@ -144,8 +144,8 @@
                                                             <img src="{{ asset('image/default_user.webp') }}"
                                                                 alt="" class="img-thumbnail shadow-sm" />
                                                         @else
-                                                            <img src="{{ asset('admin/images/icon/avatar-01.jpg') }}"
-                                                                alt="John Doe" />
+                                                            <img src="{{ asset('storage/' . Auth::user()->image) }}"
+                                                                alt="" />
                                                         @endif
                                                     </a>
                                                 </div>
@@ -160,7 +160,7 @@
                                             <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
                                                     <a href="{{ route('admin#details') }}">
-                                                        <i class="zmdi zmdi-account"></i>Account</a>
+                                                        <i class="zmdi zmdi-account me-4"></i>Account</a>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
@@ -170,10 +170,11 @@
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <form action="{{ route('logout') }}" method="post" class="mt-3">
+                                                <form action="{{ route('logout') }}" method="post"
+                                                    class="d-flex justify-content-center">
                                                     @csrf
-                                                    <button class="btn" type="submit"><i
-                                                            class="zmdi zmdi-power"></i>Logout</button>
+                                                    <button class="btn bg-dark text-white col-12" type="submit"><i
+                                                            class="zmdi zmdi-power me-2"></i>Logout</button>
                                                 </form>
                                                 {{-- <a href="{{ url('logout') }}">
                                                     <i class="zmdi zmdi-power"></i>Logout</a> --}}

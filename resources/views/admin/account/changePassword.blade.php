@@ -63,7 +63,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="cc-payment" class="control-label mb-1">COnfirm Password</label>
+                                            <label for="cc-payment" class="control-label mb-1">Confirm Password</label>
                                             <input id="cc-pament" name="confirmPassword" type="password"
                                                 class="form-control @error('confirmPassword') is-invalid @enderror"
                                                 aria-required="true" aria-invalid="false"

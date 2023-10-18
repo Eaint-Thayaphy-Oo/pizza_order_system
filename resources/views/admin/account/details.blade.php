@@ -4,6 +4,18 @@
 
 @section('content')
     <div class="main-content">
+        <div class="row">
+            <col-3 class="col-3 offset-7 mb-2">
+                @if (session('updateSuccess'))
+                    <div class="col-4 offset-8">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <i class="fa-solid fa-check"></i>{{ session('updateSuccess') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                @endif
+            </col-3>
+        </div>
         <div class="section__content section__content--p30">
             <div class="container-fluid">
                 <div class="col-md-12">
@@ -22,7 +34,7 @@
                                                 <img src="{{ asset('image/default_user.webp') }}" alt=""
                                                     class="img-thumbnail shadow-sm" />
                                             @else
-                                                <img src="{{ asset('admin/images/icon/avatar-01.jpg') }}" alt="John Doe" />
+                                                <img src="{{ asset('storage/' . Auth::user()->image) }}" alt="" />
                                             @endif
                                         </div>
                                         <div class="col-5 offset-1">
@@ -36,14 +48,18 @@
                                                     class="fa-solid fa-address-card me-2"></i>{{ Auth::user()->address }}
                                             </h4>
                                             <h4 class="my-3"><i
+                                                    class="fa-solid fa-mars-and-venus me-2"></i>{{ Auth::user()->gender }}
+                                            </h4>
+                                            <h4 class="my-3"><i
                                                     class="fa-solid fa-user-clock me-2"></i>{{ Auth::user()->created_at->format('j-F-Y') }}
                                             </h4>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-4 offset-2 mt-3">
-                                            <button class="btn bg-dark text-white"><i
-                                                    class="fa solid fa-pen-to-square me-2"></i>Edit Profile</button>
+                                            <a href="{{ route('admin#edit') }}">
+                                                <button class="btn bg-dark text-white"><i
+                                                        class="fa solid fa-pen-to-square me-2"></i>Edit Profile</button></a>
                                         </div>
                                     </div>
                                 </div>
