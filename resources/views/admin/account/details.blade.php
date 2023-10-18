@@ -7,7 +7,7 @@
         <div class="row">
             <col-3 class="col-3 offset-7 mb-2">
                 @if (session('updateSuccess'))
-                    <div class="col-4 offset-8">
+                    <div class="">
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <i class="fa-solid fa-check"></i>{{ session('updateSuccess') }}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

@@ -71,13 +71,12 @@
                                                 <div class="form-group">
                                                     <label for="cc-payment" class="control-label mb-1">Gender</label>
                                                     <select name="gender" class="form-control">
-                                                        <option value="">{{ old('gender', Auth::user()->gender) }}
+                                                        <option value="{{ old('gender', Auth::user()->gender) }}">{{ old('gender', Auth::user()->gender) }}
                                                         </option>
-                                                        <option value="male" @if (Auth::user()->gender == 'male')  @endif>
-                                                            Male
+                                                        <option value="male" @if (Auth::user()->gender == 'male')  @endif>Male
                                                         </option>
-                                                        <option value="female" @if (Auth::user()->gender == 'female')  @endif>
-                                                            Female</option>
+                                                        <option value="female" @if (Auth::user()->gender == 'female')  @endif>Female
+                                                        </option>
                                                     </select>
 
                                                 </div>

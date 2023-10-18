@@ -77,7 +77,7 @@ class AdminController extends Controller
         if ($request->hasFile('image')) {
             $dbImage = User::where('id', $id)->first();
             $dbImage = $dbImage->image;
-            dd($dbImage);
+            // dd($dbImage);
 
             if ($dbImage != null) {
                 Storage::delete('public/' . $dbImage);
