@@ -110,6 +110,7 @@ class AdminController extends Controller
             'email' => 'required',
             'gender' => 'required',
             'phone' => 'required',
+            'image' => 'mimes:png,jpg,jpeg,webp|file',
             'address' => 'required'
         ])->validate();
     }
@@ -122,6 +123,7 @@ class AdminController extends Controller
             'email' => $request->email,
             'gender' => $request->gender,
             'phone' => $request->phone,
+            'image' => $request->image,
             'address' => $request->address,
             'updated_at' => Carbon::now()
         ];

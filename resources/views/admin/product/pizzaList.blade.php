@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Category List')
+@section('title', 'Product List')
 
 @section('content')
     <div class="main-content">
@@ -11,14 +11,14 @@
                     <div class="table-data__tool">
                         <div class="table-data__tool-left">
                             <div class="overview-wrap">
-                                <h2 class="title-1">Category List</h2>
+                                <h2 class="title-1">Products List</h2>
 
                             </div>
                         </div>
                         <div class="table-data__tool-right">
-                            <a href="{{ route('category#createPage') }}">
+                            <a href="{{ route('product#createPage') }}">
                                 <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                                    <i class="zmdi zmdi-plus"></i>add category
+                                    <i class="zmdi zmdi-plus"></i>add pizza
                                 </button>
                             </a>
                             <button class="au-btn au-btn-icon au-btn--green au-btn--small">
@@ -76,41 +76,48 @@
                         </div>
                         <div class="row my-2">
                             <div class="col-1 offset-10 bg-white shadow-sm p-2 my-1 text-center">
-                                <h3><i class="fa-solid fa-database mr-2"> - {{ $categories->total() }}</i></h3>
+                                <h3><i class="fa-solid fa-database mr-2"> - {{ $pizzas->total() }} </i></h3>
                             </div>
                         </div>
                     </div>
 
-                    @if (count($categories) != 0)
+                    @if (count($pizzas) != 0)
                         <div class="table-responsive table-responsive-data2">
                             <table class="table table-data2 text-center">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Category Name</th>
-                                        <th>Created Date</th>
+                                        <th>Image</th>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th>Category</th>
+                                        <th>View Count</th>
+                                        <th>Created date</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($categories as $category)
+                                    @foreach ($pizzas as $p)
                                         <tr class="tr-shadow">
-                                            <td>{{ $category->id }}</td>
-                                            <td>{{ $category->name }}</td>
-                                            <td>{{ $category->created_at->format('j_F_Y') }}</td>
+                                            <td class="col-2"><img src="{{ asset('storage/' . $p->image) }}"
+                                                    class="img-thumbnail shadow-sm"</td>
+                                            <td class="col-3">{{ $p->name }}</td>
+                                            <td class="col-2">{{ $p->price }}</td>
+                                            <td class="col-2">{{ $p->category_id }}</td>
+                                            <td class="col-2"><i class="fa-solid fa-eye"></i>{{ $p->view_count }}</td>
+                                            <td>{{ $p->created_at->format('j_F_Y') }}</td>
                                             <td>
                                                 <div class="table-data-feature">
                                                     <button class="item" data-toggle="tooltip" data-placement="top"
-                                                        title="View">
-                                                        <i class="fa-solid fa-eye"></i>
+                                                        title="Send">
+                                                        <i class="zmdi zmdi-mail-send"></i>
                                                     </button>
-                                                    <a href="{{ route('category#edit', $category->id) }}">
+                                                    <a href="">
                                                         <button class="item" data-toggle="tooltip" data-placement="top"
                                                             title="Edit">
                                                             <i class="zmdi zmdi-edit"></i>
                                                         </button>
                                                     </a>
-                                                    <a href="{{ route('category#delete', $category->id) }}">
+                                                    <a href="">
                                                         <button class="item" data-toggle="tooltip" data-placement="top"
                                                             title="Delete">
                                                             <i class="zmdi zmdi-delete"></i>
@@ -127,11 +134,11 @@
                                 </tbody>
                             </table>
                             <div class="mt-3">
-                                {{ $categories->links() }}
+                                {{ $pizzas->links() }}
                             </div>
                         </div>
                     @else
-                        <h3 class="text-secondary text-center mt-5">There is no Category Here!</h3>
+                        <h3 class="text-secondary text-center mt-5">There is no Pizza Here!</h3>
                     @endif
                     <!-- END DATA TABLE -->
                 </div>

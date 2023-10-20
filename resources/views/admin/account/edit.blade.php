@@ -29,7 +29,12 @@
                                                         alt="" />
                                                 @endif
                                                 <div class="mt-3">
-                                                    <input type="file" name="image" class="form-control">
+                                                    <input type="file" name="image"
+                                                        class="form-control @error('image') is-invalid
+                                                    @enderror">
+                                                    @error('image')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                                 <div class="mt-3">
                                                     <button class="btn bg-dark text-white col-12" type="submit">
@@ -71,11 +76,14 @@
                                                 <div class="form-group">
                                                     <label for="cc-payment" class="control-label mb-1">Gender</label>
                                                     <select name="gender" class="form-control">
-                                                        <option value="{{ old('gender', Auth::user()->gender) }}">{{ old('gender', Auth::user()->gender) }}
+                                                        <option value="{{ old('gender', Auth::user()->gender) }}">
+                                                            {{ old('gender', Auth::user()->gender) }}
                                                         </option>
-                                                        <option value="male" @if (Auth::user()->gender == 'male')  @endif>Male
+                                                        <option value="male" @if (Auth::user()->gender == 'male')  @endif>
+                                                            Male
                                                         </option>
-                                                        <option value="female" @if (Auth::user()->gender == 'female')  @endif>Female
+                                                        <option value="female" @if (Auth::user()->gender == 'female')  @endif>
+                                                            Female
                                                         </option>
                                                     </select>
 
