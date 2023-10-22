@@ -63,7 +63,7 @@
                             </h4>
                         </div>
                         <div class="col-3 offset-9">
-                            <form action="{{ route('category#list') }}" method="get">
+                            <form action="{{ route('product#list') }}" method="get">
                                 @csrf
                                 <div class="d-flex my-3">
                                     <input type="text" name="key" class="form-control" value="{{ request('key') }}"
@@ -102,22 +102,23 @@
                                                     class="img-thumbnail shadow-sm"</td>
                                             <td class="col-3">{{ $p->name }}</td>
                                             <td class="col-2">{{ $p->price }}</td>
-                                            <td class="col-2">{{ $p->category_id }}</td>
+                                            <td class="col-2">{{ $p->category_name }}</td>
                                             <td class="col-2"><i class="fa-solid fa-eye"></i>{{ $p->view_count }}</td>
                                             <td>{{ $p->created_at->format('j_F_Y') }}</td>
                                             <td>
                                                 <div class="table-data-feature">
-                                                    <button class="item" data-toggle="tooltip" data-placement="top"
-                                                        title="Send">
-                                                        <i class="zmdi zmdi-mail-send"></i>
-                                                    </button>
-                                                    <a href="">
+                                                    <a href="{{ route('product#edit', $p->id) }}">
+                                                        <button class="item" data-toggle="tooltip" data-placement="top"
+                                                            title="View">
+                                                            <i class="fa-solid fa-eye"></i>
+                                                        </button></a>
+                                                    <a href="{{ route('product#updatePage', $p->id) }}">
                                                         <button class="item" data-toggle="tooltip" data-placement="top"
                                                             title="Edit">
                                                             <i class="zmdi zmdi-edit"></i>
                                                         </button>
                                                     </a>
-                                                    <a href="">
+                                                    <a href="{{ route('product#delete', $p->id) }}">
                                                         <button class="item" data-toggle="tooltip" data-placement="top"
                                                             title="Delete">
                                                             <i class="zmdi zmdi-delete"></i>
@@ -138,7 +139,7 @@
                             </div>
                         </div>
                     @else
-                        <h3 class="text-secondary text-center mt-5">There is no Pizza Here!</h3>
+                        <h3 class="text-secondary text-center mt-5">There is no Product Here!</h3>
                     @endif
                     <!-- END DATA TABLE -->
                 </div>
