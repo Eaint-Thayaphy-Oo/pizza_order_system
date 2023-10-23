@@ -100,7 +100,7 @@ Route::middleware('auth')->group(function () {
         // Route::get('home', function () {
         //     return view('user.home');
         // })->name('user#home');
-        Route::get('homePage', [UserController::class, 'home'])->name('user#home');
+        Route::get('/homePage', [UserController::class, 'home'])->name('user#home');
     });
 });
 
