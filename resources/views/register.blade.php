@@ -11,8 +11,8 @@
             @enderror
             <div class="form-group">
                 <label>Username</label>
-                <input class="au-input au-input--full" type="text" name="username" placeholder="Username">
-                @error('username')
+                <input class="au-input au-input--full" type="text" name="name" placeholder="Username">
+                @error('name')
                     <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>
