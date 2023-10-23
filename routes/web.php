@@ -60,6 +60,12 @@ Route::middleware('auth')->group(function () {
         Route::get('password/changePage', [AdminController::class, 'changePasswordPage'])->name('admin#changePasswordPage');
         Route::post('change/password', [AdminController::class, 'changePassword'])->name('admin#changePassword');
 
+        //admin list
+        Route::get('list', [AdminController::class, 'list'])->name('admin#list');
+        Route::get('delete/{id}', [AdminController::class, 'delete'])->name('admin#delete');
+        Route::get('changeRole/{id}', [AdminController::class, 'changeRole'])->name('admin#changeRole');
+        Route::post('change/role/{id}', [AdminController::class, 'change'])->name('admin#change');
+
         //profile
         Route::get('details', [AdminController::class, 'details'])->name('admin#details');
         Route::get('edit', [AdminController::class, 'edit'])->name('admin#edit');

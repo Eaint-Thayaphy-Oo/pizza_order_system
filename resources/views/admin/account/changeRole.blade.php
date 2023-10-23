@@ -12,22 +12,22 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="ms-5">
-                                        <a href="{{ route('admin#details') }}">
+                                        <a href="{{ route('admin#list') }}">
                                             <i class="fa-solid fa-arrow-left text-dark"></i>
                                         </a>
                                     </div>
                                     <div class="card-title">
-                                        <h3 class="text-center title-2">Account Profile</h3>
+                                        <h3 class="text-center title-2">Change Role</h3>
                                     </div>
                                     <hr>
 
-                                    <form action="{{ route('admin#update', Auth::user()->id) }}" method="post"
+                                    <form action="{{ route('admin#change', Auth::user()->id) }}" method="post"
                                         enctype="multipart/form-data">
                                         @csrf
                                         <div class="row">
                                             <div class="col-4 offset-1">
-                                                @if (Auth::user()->image == null)
-                                                    @if (Auth::user()->gender == 'male')
+                                                @if ($account->image == null)
+                                                    @if ($account->gender == 'male')
                                                         <img src="{{ asset('image/default_user.webp') }}" alt=""
                                                             class="img-thumbnail shadow-sm" />
                                                     @else
@@ -48,7 +48,7 @@
                                                 </div>
                                                 <div class="mt-3">
                                                     <button class="btn bg-dark text-white col-12" type="submit">
-                                                        <i class="fa-solid fa-circle-chevron-right me-1"></i>Update
+                                                        <i class="fa-solid fa-circle-chevron-right me-1"></i>Change
                                                     </button>
                                                 </div>
                                             </div>
@@ -57,8 +57,8 @@
                                                     <label class="control-label mb-1">Name</label>
                                                     <input id="cc-pament" name="name" type="text"
                                                         class="form-control @error('name') is-invalid @enderror"
-                                                        value="{{ old('name', Auth::user()->name) }}" aria-required="true"
-                                                        aria-invalid="false" placeholder="Enter Admin Name...">
+                                                        value="{{ old('name', $account->name) }}" aria-required="true"
+                                                        aria-invalid="false" placeholder="Enter Admin Name..." disabled>
                                                     @error('name')
                                                         <div class="invalid-feedback">{{ $message }}</div>
                                                     @enderror
@@ -67,8 +67,8 @@
                                                     <label for="cc-payment" class="control-label mb-1">Email</label>
                                                     <input id="cc-pament" name="email" type="email"
                                                         class="form-control @error('email') is-invalid @enderror"
-                                                        value="{{ old('email', Auth::user()->email) }}" aria-required="true"
-                                                        aria-invalid="false" placeholder="Enter Admin Password...">
+                                                        value="{{ old('email', $account->email) }}" aria-required="true"
+                                                        aria-invalid="false" placeholder="Enter Admin Email..." disabled>
                                                     @error('email')
                                                         <div class="invalid-feedback">{{ $message }}</div>
                                                     @enderror
@@ -77,23 +77,22 @@
                                                     <label for="cc-payment" class="control-label mb-1">Phone</label>
                                                     <input id="cc-pament" name="phone" type="text"
                                                         class="form-control @error('phone') is-invalid @enderror"
-                                                        value="{{ old('phone', Auth::user()->phone) }}"
-                                                        aria-required="true" aria-invalid="false"
-                                                        placeholder="Enter Admin Phone...">
+                                                        value="{{ old('phone', $account->phone) }}" aria-required="true"
+                                                        aria-invalid="false" placeholder="Enter Admin Phone..." disabled>
                                                     @error('phone')
                                                         <div class="invalid-feedback">{{ $message }}</div>
                                                     @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="cc-payment" class="control-label mb-1">Gender</label>
-                                                    <select name="gender" class="form-control">
-                                                        <option value="{{ old('gender', Auth::user()->gender) }}">
-                                                            {{ old('gender', Auth::user()->gender) }}
+                                                    <select name="gender" class="form-control" disabled>
+                                                        <option value="{{ old('gender', $account->gender) }}">
+                                                            {{ old('gender', $account->gender) }}
                                                         </option>
-                                                        <option value="male" @if (Auth::user()->gender == 'male')  @endif>
+                                                        <option value="male" @if ($account->gender == 'male')  @endif>
                                                             Male
                                                         </option>
-                                                        <option value="female" @if (Auth::user()->gender == 'female')  @endif>
+                                                        <option value="female" @if ($account->gender == 'female')  @endif>
                                                             Female
                                                         </option>
                                                     </select>
@@ -102,18 +101,22 @@
                                                 <div class="form-group">
                                                     <label for="cc-payment" class="control-label mb-1">Address</label>
                                                     <textarea id="cc-pament" name="address" type="text" class="form-control @error('address') is-invalid @enderror"
-                                                        aria-required="true" aria-invalid="false" rows="4" cols="50" placeholder="Enter Admin Address...">{{ old('address', Auth::user()->address) }}</textarea>
+                                                        aria-required="true" aria-invalid="false" rows="4" cols="50" placeholder="Enter Admin Address..."
+                                                        disabled>{{ old('address', $account->address) }}</textarea>
                                                     @error('address')
                                                         <div class="invalid-feedback">{{ $message }}</div>
                                                     @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="cc-payment" class="control-label mb-1">Role</label>
-                                                    <input id="cc-pament" name="role" type="text"
-                                                        class="form-control @error('role') is-invalid @enderror"
-                                                        value="{{ old('role', Auth::user()->role) }}" disabled
-                                                        aria-required="true" aria-invalid="false"
-                                                        placeholder="Enter Admin Role...">
+                                                    <select name="role" class="form-control">
+                                                        <option
+                                                            value="admin"@if ($account->role == 'admin') selected @endif>
+                                                            Admin</option>
+                                                        <option
+                                                            value="user"@if ($account->role == 'user') selected @endif>
+                                                            User</option>
+                                                    </select>
                                                     @error('role')
                                                         <div class="invalid-feedback">{{ $message }}</div>
                                                     @enderror

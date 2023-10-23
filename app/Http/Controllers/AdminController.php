@@ -92,6 +92,47 @@ class AdminController extends Controller
         return redirect()->route('admin#details')->with(['updateSuccess' => 'Admin Account Updated...']);
     }
 
+    //direct admin list
+    public function list()
+    {
+        $admin = User::when(request('key'), function ($query) {
+            $query->orWhere('name', 'like', '%' . request('key') . '%')
+                ->orWhere('email', 'like', '%' . request('key') . '%')
+                ->orWhere('gender', 'like', '%' . request('key') . '%')
+                ->orWhere('phone', 'like', '%' . request('key') . '%')
+                ->orWhere('address', 'like', '%' . request('key') . '%');
+        })
+            ->where('role', 'admin')->paginate(3);
+        $admin->appends(request()->all());
+        // dd($admin->toArray());
+        return view('admin.account.list', compact('admin'));
+    }
+
+    //delete account
+    public function delete($id)
+    {
+        // dd('delete');
+        User::where('id', $id)->delete();
+        return back()->with(['deleteSuccess' => 'Admin Account Deleted...']);
+    }
+
+    //change role
+    public function changeRole($id)
+    {
+        // dd($id);
+        $account = User::where('id', $id)->first();
+        return view('admin.account.changeRole', compact('account'));
+    }
+
+    //change
+    public function change($id, Request $request)
+    {
+        // dd($id, $request->all());
+        $data = $this->requestUserData($request);
+        User::where('id', $id)->update($data);
+        return redirect()->route('admin#list')->with(['updateSuccess' => 'Admin Account Successfully...']);
+    }
+
     //password validation check
     private function passwordValidationCheck($request)
     {
@@ -126,6 +167,14 @@ class AdminController extends Controller
             'image' => $request->image,
             'address' => $request->address,
             'updated_at' => Carbon::now()
+        ];
+    }
+
+    //request user data
+    private function requestUserData($request)
+    {
+        return [
+            'role' => $request->role
         ];
     }
 }

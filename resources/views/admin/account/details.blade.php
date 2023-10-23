@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Category List')
+@section('title', 'Admin List')
 
 @section('content')
     <div class="main-content">
@@ -23,6 +23,11 @@
                         <div class="col-lg-10 offset-1">
                             <div class="card">
                                 <div class="card-body">
+                                    <div class="ms-5">
+                                        <a href="{{ route('admin#list') }}">
+                                            <i class="fa-solid fa-arrow-left text-dark"></i>
+                                        </a>
+                                    </div>
                                     <div class="card-title">
                                         <h3 class="text-center title-2">Account Info</h3>
                                     </div>
@@ -31,10 +36,16 @@
                                     <div class="row">
                                         <div class="col-3 offset-2">
                                             @if (Auth::user()->image == null)
-                                                <img src="{{ asset('image/default_user.webp') }}" alt=""
-                                                    class="img-thumbnail shadow-sm" />
+                                                @if (Auth::user()->gender == 'male')
+                                                    <img src="{{ asset('image/default_user.webp') }}" alt=""
+                                                        class="img-thumbnail shadow-sm" />
+                                                @else
+                                                    <img src="{{ asset('image/default_female.jpg') }}" alt=""
+                                                        class="img-thumbnail shadow-sm" />
+                                                @endif
                                             @else
-                                                <img src="{{ asset('storage/' . Auth::user()->image) }}" alt="" />
+                                                <img src="{{ asset('storage/' . Auth::user()->image) }}"
+                                                    class="img-thumbnail shadow-sm">
                                             @endif
                                         </div>
                                         <div class="col-5 offset-1">
