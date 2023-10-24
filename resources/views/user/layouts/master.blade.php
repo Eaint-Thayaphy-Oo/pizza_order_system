@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>MultiShop - Online Shop Website Template</title>
+    <title>Pizza Order System</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <!-- Libraries Stylesheet -->
     <link href="{{ asset('user/lib/animate/animate.min.css') }}" rel="stylesheet">
@@ -49,9 +51,9 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="shop.html" class="nav-item nav-link active">Home</a>
-                            <a href="cart.html" class="nav-item nav-link">My Cart</a>
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            <a href="{{ route('user#home') }}" class="nav-item nav-link">Home</a>
+                            {{-- <a href="cart.html" class="nav-item nav-link">My Cart</a>
+                            <a href="contact.html" class="nav-item nav-link">Contact</a> --}}
                         </div>
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                             <a href="" class="btn px-0">
@@ -64,17 +66,29 @@
                                 <span class="badge text-secondary border border-secondary rounded-circle"
                                     style="padding-bottom: 2px;">0</span>
                             </a>
-                            <a href="" class="btn px-0 ml-3 text-white">
-                                <i class="fa-solid fa-user"></i>
-                                {{ Auth::user()->name }}
-                            </a>
-                            <span class="text-white ms-3">|</span>
-                            <form action="{{ route('logout') }}" method="post" class="d-inline">
-                                @csrf
-                                <button class="btn bg-dark text-white">
-                                    <i class="fa-solid fa-right-from-bracket"></i>Logout
-                                </button>
-                            </form>
+                            <div class="dropdown d-inline me-5">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-user me-2"></i>{{ Auth::user()->name }}
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item my-3"
+                                            href="{{ route('user#accountChangePage') }}"><i
+                                                class="fa-solid fa-user me-2"></i>Account</a></li>
+                                    <li><a class="dropdown-item my-3" href="{{ route('user#changePasswordPage') }}"><i
+                                                class="fa-solid fa-key me-2"></i>Change
+                                            Password</a></li>
+                                    <li><a class="dropdown-item my-3" href="#">
+                                            <form action="{{ route('logout') }}" method="post" class="">
+                                                @csrf
+                                                <button class="btn bg-dark text-white col-12">
+                                                    <i class="fa-solid fa-right-from-bracket me-2"></i>Logout
+                                                </button>
+                                            </form>
+                                        </a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </nav>
@@ -101,12 +115,14 @@
                     <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">Quick Shop</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                            <a class="text-secondary mb-2" href="#"><i
+                                    class="fa fa-angle-right mr-2"></i>Home</a>
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our
                                 Shop</a>
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shop
                                 Detail</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shopping
+                            <a class="text-secondary mb-2" href="#"><i
+                                    class="fa fa-angle-right mr-2"></i>Shopping
                                 Cart</a>
                             <a class="text-secondary mb-2" href="#"><i
                                     class="fa fa-angle-right mr-2"></i>Checkout</a>
@@ -179,6 +195,9 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
     <script src="{{ asset('user/lib/easing/easing.min.js') }}"></script>
     <script src="{{ asset('user/lib/owlcarousel/owl.carousel.min.js') }}"></script>
 

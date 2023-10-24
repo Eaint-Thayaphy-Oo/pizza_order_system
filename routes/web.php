@@ -102,6 +102,18 @@ Route::middleware('auth')->group(function () {
         // })->name('user#home');
         Route::get('/homePage', [UserController::class, 'home'])->name('user#home');
     });
+
+    //password
+    Route::prefix('password')->group(function () {
+        Route::get('change', [UserController::class, 'changePasswordPage'])->name('user#changePasswordPage');
+        Route::post('change', [UserController::class, 'changePassword'])->name('user#changePassword');
+    });
+
+    //account
+    Route::prefix('account')->group(function () {
+        Route::get('change', [UserController::class, 'accountChangePage'])->name('user#accountChangePage');
+        Route::post('change/{id}', [UserController::class, 'accountChange'])->name('user#accountChange');
+    });
 });
 
 //login,register
