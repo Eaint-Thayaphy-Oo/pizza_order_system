@@ -126,6 +126,11 @@ Route::middleware('auth')->group(function () {
             // });
             Route::get('pizza/list', [AjaxController::class, 'pizzaList'])->name('ajax#pizzaList');
         });
+
+        //for pizza
+        Route::prefix('pizza')->group(function () {
+            Route::get('details/{id}', [UserController::class, 'pizzaDetails'])->name('user#pizzaDetails');
+        });
     });
 });
 

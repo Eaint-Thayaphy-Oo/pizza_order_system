@@ -91,6 +91,15 @@ class UserController extends Controller
         return view('user.main.home', compact('pizza', 'category'));
     }
 
+    //direct pizza details
+    public function pizzaDetails($pizzaId)
+    {
+        // dd($pizzaId);
+        $pizza = Product::where('id', $pizzaId)->first();
+        $pizzaList = Product::get();
+        return view('user.main.details', compact('pizza', 'pizzaList'));
+    }
+
     //password validation check
     private function passwordValidationCheck($request)
     {
