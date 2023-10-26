@@ -73,8 +73,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item my-3"
-                                            href="{{ route('user#accountChangePage') }}"><i
+                                    <li><a class="dropdown-item my-3" href="{{ route('user#accountChangePage') }}"><i
                                                 class="fa-solid fa-user me-2"></i>Account</a></li>
                                     <li><a class="dropdown-item my-3" href="{{ route('user#changePasswordPage') }}"><i
                                                 class="fa-solid fa-key me-2"></i>Change
@@ -205,8 +204,15 @@
     <script src="{{ asset('user/mail/jqBootstrapValidation.min.js') }}"></script>
     <script src="{{ asset('user/mail/contact.js') }}"></script>
 
+    {{-- jquery cdn --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <!-- Template Javascript -->
     <script src="{{ asset('user/js/main.js') }}"></script>
 </body>
+
+@yield('scriptSource')
 
 </html>

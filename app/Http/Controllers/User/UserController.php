@@ -81,6 +81,16 @@ class UserController extends Controller
         return redirect()->route('user#accountChangePage')->with(['updateSuccess' => 'User Account Updated...']);
     }
 
+    //filter pizza
+    public function filter($categoryId)
+    {
+        // dd($categoryId);
+
+        $pizza = Product::where('category_id', $categoryId)->orderBy('created_at', 'desc')->get();
+        $category = Category::get();
+        return view('user.main.home', compact('pizza', 'category'));
+    }
+
     //password validation check
     private function passwordValidationCheck($request)
     {

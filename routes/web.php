@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\User\AjaxController;
 use App\Http\Controllers\User\UserController;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,23 +98,34 @@ Route::middleware('auth')->group(function () {
     // }); d lo ll yayy loh ya dL
 
     //user
+    //home
     Route::group(['prefix' => 'user', 'middleware' => 'user_auth'], function () {
         // Route::get('home', function () {
         //     return view('user.home');
         // })->name('user#home');
         Route::get('/homePage', [UserController::class, 'home'])->name('user#home');
-    });
+        Route::get('/filter/{id}', [UserController::class, 'filter'])->name('user#filter');
 
-    //password
-    Route::prefix('password')->group(function () {
-        Route::get('change', [UserController::class, 'changePasswordPage'])->name('user#changePasswordPage');
-        Route::post('change', [UserController::class, 'changePassword'])->name('user#changePassword');
-    });
+        //password
+        Route::prefix('password')->group(function () {
+            Route::get('change', [UserController::class, 'changePasswordPage'])->name('user#changePasswordPage');
+            Route::post('change', [UserController::class, 'changePassword'])->name('user#changePassword');
+        });
 
-    //account
-    Route::prefix('account')->group(function () {
-        Route::get('change', [UserController::class, 'accountChangePage'])->name('user#accountChangePage');
-        Route::post('change/{id}', [UserController::class, 'accountChange'])->name('user#accountChange');
+        //account
+        Route::prefix('account')->group(function () {
+            Route::get('change', [UserController::class, 'accountChangePage'])->name('user#accountChangePage');
+            Route::post('change/{id}', [UserController::class, 'accountChange'])->name('user#accountChange');
+        });
+
+        //for ajax sorting
+        Route::prefix('ajax')->group(function () {
+            // Route::get('pizzaList', function () {
+            //     $data = Product::get();
+            //     return $data;
+            // });
+            Route::get('pizza/list', [AjaxController::class, 'pizzaList'])->name('ajax#pizzaList');
+        });
     });
 });
 
