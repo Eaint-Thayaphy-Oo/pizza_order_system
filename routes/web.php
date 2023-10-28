@@ -125,11 +125,17 @@ Route::middleware('auth')->group(function () {
             //     return $data;
             // });
             Route::get('pizza/list', [AjaxController::class, 'pizzaList'])->name('ajax#pizzaList');
+            Route::get('addToCart', [AjaxController::class, 'addToCart'])->name('ajax#addToCart');
         });
 
         //for pizza
         Route::prefix('pizza')->group(function () {
             Route::get('details/{id}', [UserController::class, 'pizzaDetails'])->name('user#pizzaDetails');
+        });
+
+        //for cart
+        Route::prefix('cart')->group(function () {
+            Route::get('list', [UserController::class, 'cartList'])->name('user#cartList');
         });
     });
 });
