@@ -21,7 +21,9 @@
                             <tr>
                                 <td><img src="{{ asset('storage/' . $c->pizza_image) }}" alt=""
                                         class="img thumbnail shadow-sm" style="width: 100px;"></td>
-                                <td class="align-middle">{{ $c->pizza_name }}</td>
+                                <td class="align-middle">{{ $c->pizza_name }} <input type="hidden" class="userId"
+                                        value="{{ $c->user_id }}"></td>
+                                <input type="hidden" class="productId" value="{{ $c->product_id }}">
                                 <td class="align-middle" id="price">{{ $c->pizza_price }} kyats</td>
                                 <td class="align-middle">
                                     <div class="input-group quantity mx-auto" style="width: 100px;">
@@ -67,7 +69,8 @@
                             <h5>Total</h5>
                             <h5 id="finalPrice">{{ $totalPrice + 3000 }} kyats</h5>
                         </div>
-                        <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</button>
+                        <button class="btn btn-block btn-primary font-weight-bold my-3 py-3" id="orderBtn">Proceed To
+                            Checkout</button>
                     </div>
                 </div>
             </div>
@@ -135,6 +138,38 @@
                 $('#subTotalPrice').html(`${$totalPrice} kyats`);
                 $('#finalPrice').html(`${$totalPrice+3000} kyats`);
             };
+
+            $('#orderBtn').click(function() {
+                // console.log('order');
+
+                $orderList = [];
+
+                $random = Math.floor(Math.random() * 100000000001);
+
+                $('#dataTable tbody tr').each(function(index, row) {
+                    $orderList.push({
+                        'user_id': $(row).find('.userId').val(),
+                        'product_id': $(row).find('.productId').val(),
+                        'qty': $(row).find('#qty').val(),
+                        'total': $(row).find('#total').text().replace("kyats", "") * 1,
+                        'order_code': 'POS' + $random
+                    });
+                });
+
+                console.log($orderList);
+                $.ajax({
+                    type: 'get',
+                    url: 'http://127.0.0.1:8000/user/ajax/order',
+                    data: Object.assign({}, $orderList),
+                    dataType: 'json',
+                    success: function(response) {
+                        // console.log(response.status);
+                        if (response.status == 'true') {
+                            window.location.href = 'http://127.0.0.1:8000/user/homePage';
+                        }
+                    }
+                });
+            });
         });
     </script>
 @endsection
