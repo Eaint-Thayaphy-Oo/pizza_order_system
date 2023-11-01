@@ -105,6 +105,7 @@ Route::middleware('auth')->group(function () {
         // })->name('user#home');
         Route::get('/homePage', [UserController::class, 'home'])->name('user#home');
         Route::get('/filter/{id}', [UserController::class, 'filter'])->name('user#filter');
+        Route::get('/history', [UserController::class, 'history'])->name('user#history');
 
         //password
         Route::prefix('password')->group(function () {
@@ -127,6 +128,9 @@ Route::middleware('auth')->group(function () {
             Route::get('pizza/list', [AjaxController::class, 'pizzaList'])->name('ajax#pizzaList');
             Route::get('addToCart', [AjaxController::class, 'addToCart'])->name('ajax#addToCart');
             Route::get('order', [AjaxController::class, 'order'])->name('ajax#order');
+            Route::get('clear/cart', [AjaxController::class, 'clearCart'])->name('ajax#clearCart');
+            //for remove button
+            Route::get('clear/current/product', [AjaxController::class, 'clearCurrentProduct'])->name('ajax#clearCurrentProduct');
         });
 
         //for pizza

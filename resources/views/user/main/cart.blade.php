@@ -24,6 +24,7 @@
                                 <td class="align-middle">{{ $c->pizza_name }} <input type="hidden" class="userId"
                                         value="{{ $c->user_id }}"></td>
                                 <input type="hidden" class="productId" value="{{ $c->product_id }}">
+                                <input type="hidden" class="orderId" value="{{ $c->id }}">
                                 <td class="align-middle" id="price">{{ $c->pizza_price }} kyats</td>
                                 <td class="align-middle">
                                     <div class="input-group quantity mx-auto" style="width: 100px;">
@@ -71,6 +72,8 @@
                         </div>
                         <button class="btn btn-block btn-primary font-weight-bold my-3 py-3" id="orderBtn">Proceed To
                             Checkout</button>
+                        <button class="btn btn-block btn-danger font-weight-bold my-3 py-3" id="clearBtn">Clear
+                            Cart</button>
                     </div>
                 </div>
             </div>
@@ -119,6 +122,19 @@
             $('.btnRemove').click(function() {
                 // console.log('remove');
                 $parentNode = $(this).parents("tr");
+                $productId = $parentNode.find(".productId").val();
+                $orderId = $parentNode.find(".orderId").val();
+
+                $.ajax({
+                    type: 'get',
+                    url: 'http://127.0.0.1:8000/user/ajax/clear/current/product',
+                    data: {
+                        'productId': $productId,
+                        'orderId': $orderId
+                    },
+                    dataType: 'json',
+                });
+
                 $parentNode.remove();
 
                 summaryCalculation();
@@ -168,6 +184,20 @@
                             window.location.href = 'http://127.0.0.1:8000/user/homePage';
                         }
                     }
+                });
+            });
+
+            //when clear button click
+            $('#clearBtn').click(function() {
+                // console.log('hello');
+                $('#dataTable tbody tr').remove();
+                $('#subTotalPrice').html("0 kyats");
+                $('#finalPrice').html("3000 kyats");
+
+                $.ajax({
+                    type: 'get',
+                    url: 'http://127.0.0.1:8000/user/ajax/clear/cart',
+                    dataType: 'json',
                 });
             });
         });

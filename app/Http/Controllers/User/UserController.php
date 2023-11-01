@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -22,7 +23,8 @@ class UserController extends Controller
         $pizza = Product::orderBy('created_at', 'desc')->get();
         $category = Category::get();
         $cart = Cart::where('user_id', Auth::user()->id)->get();
-        return view('user.main.home', compact('pizza', 'category', 'cart'));
+        $history = Order::where('user_id', Auth::user()->id)->get();
+        return view('user.main.home', compact('pizza', 'category', 'cart', 'history'));
     }
 
     //change password page
@@ -91,7 +93,8 @@ class UserController extends Controller
         $pizza = Product::where('category_id', $categoryId)->orderBy('created_at', 'desc')->get();
         $category = Category::get();
         $cart = Cart::where('user_id', Auth::user()->id)->get();
-        return view('user.main.home', compact('pizza', 'category', 'cart'));
+        $history = Order::where('user_id', Auth::user()->id)->get();
+        return view('user.main.home', compact('pizza', 'category', 'cart', 'history'));
     }
 
     //direct pizza details
@@ -121,6 +124,13 @@ class UserController extends Controller
         // dd($totalPrice);
 
         return view('user.main.cart', compact('cartList', 'totalPrice'));
+    }
+
+    //direct history page
+    public function history()
+    {
+        $order = Order::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(5);
+        return view('user.main.history', compact('order'));
     }
 
     //password validation check
