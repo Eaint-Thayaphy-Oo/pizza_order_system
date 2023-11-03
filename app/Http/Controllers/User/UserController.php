@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
+use function Ramsey\Uuid\v1;
+
 class UserController extends Controller
 {
     //user home page
@@ -131,6 +133,24 @@ class UserController extends Controller
     {
         $order = Order::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(5);
         return view('user.main.history', compact('order'));
+    }
+
+    //direct user list page
+    public function userList()
+    {
+        $users = User::where('role', 'user')->paginate(3);
+        return view('admin.user.list', compact('users'));
+    }
+
+    //change user role
+    public function userChangeRole(Request $request)
+    {
+        // logger($request->all());
+        $updateSource = [
+            'role' => $request->role
+        ];
+
+        User::where('id', $request->userId)->update($updateSource);
     }
 
     //password validation check
