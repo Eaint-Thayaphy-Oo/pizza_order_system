@@ -30,7 +30,7 @@
                             <small class="fas fa-star-half-alt"></small>
                             <small class="far fa-star"></small>
                         </div> --}}
-                        <small class="pt-1">{{ $pizza->view_count }}<i class="fa-solid fa-eye ms-2"></i></small>
+                        <small class="pt-1"><i class="fa-solid fa-eye ms-2"></i>{{ $pizza->view_count + 1 }}</small>
                     </div>
                     <h3 class="font-weight-semi-bold mb-4">{{ $pizza->price }}kyats</h3>
                     <p class="mb-4">{{ $pizza->description }}</p>
@@ -41,7 +41,8 @@
                                     <i class="fa fa-minus"></i>
                                 </button>
                             </div>
-                            <input type="text" id="orderCount" class="form-control bg-secondary border-0 text-center" value="1">
+                            <input type="text" id="orderCount" class="form-control bg-secondary border-0 text-center"
+                                value="1">
                             <div class="input-group-btn">
                                 <button class="btn btn-primary btn-plus">
                                     <i class="fa fa-plus"></i>
@@ -122,6 +123,17 @@
 @section('scriptSource')
     <script>
         $(document).ready(function() {
+            //increase view count
+            $.ajax({
+                type: 'get',
+                url: '/user/ajax/increase/viewCount',
+                data: {
+                    'productId': $('#pizzaId').val()
+                },
+                dataType: 'json',
+            });
+
+            //click add to cart btn
             $('#addCartBtn').click(function() {
                 // alert($('#orderCount').val());
 

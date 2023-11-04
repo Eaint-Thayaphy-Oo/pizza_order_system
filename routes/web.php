@@ -146,6 +146,7 @@ Route::middleware('auth')->group(function () {
             Route::get('clear/cart', [AjaxController::class, 'clearCart'])->name('ajax#clearCart');
             //for remove button
             Route::get('clear/current/product', [AjaxController::class, 'clearCurrentProduct'])->name('ajax#clearCurrentProduct');
+            Route::get('increase/viewCount', [AjaxController::class, 'increaseViewCount'])->name('ajax#increaseViewCount');
         });
 
         //for pizza
