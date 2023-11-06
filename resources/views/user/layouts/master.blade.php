@@ -51,9 +51,9 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="{{ route('user#home') }}" class="nav-item nav-link">Home</a>
-                            {{-- <a href="cart.html" class="nav-item nav-link">My Cart</a>
-                            <a href="contact.html" class="nav-item nav-link">Contact</a> --}}
+                            <a href="{{ route('user#home') }}" class="nav-item nav-link active">Home</a>
+                            {{-- <a href="cart.html" class="nav-item nav-link">My Cart</a> --}}
+                            <a href="{{ route('user#contact') }}" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                             <a href="" class="btn px-0">
@@ -207,8 +207,8 @@
     <script src="{{ asset('user/lib/owlcarousel/owl.carousel.min.js') }}"></script>
 
     <!-- Contact Javascript File -->
-    <script src="{{ asset('user/mail/jqBootstrapValidation.min.js') }}"></script>
-    <script src="{{ asset('user/mail/contact.js') }}"></script>
+    {{-- <script src="{{ asset('user/mail/jqBootstrapValidation.min.js') }}"></script>
+    <script src="{{ asset('user/mail/contact.js') }}"></script> --}}
 
     <!-- Template Javascript -->
     <script src="{{ asset('user/js/main.js') }}"></script>

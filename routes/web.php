@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\User\AjaxController;
@@ -99,6 +100,9 @@ Route::middleware('auth')->group(function () {
             Route::get('list', [UserController::class, 'userList'])->name('admin#userList');
             Route::get('change/role', [UserController::class, 'userChangeRole'])->name('admin#userChangeRole');
         });
+
+        //for admin contact
+        Route::get('contact', [AdminController::class, 'contactList'])->name('admin#contactList');
     });
 
     // Route::middleware(['admin_auth'])->group(function(){
@@ -158,6 +162,10 @@ Route::middleware('auth')->group(function () {
         Route::prefix('cart')->group(function () {
             Route::get('list', [UserController::class, 'cartList'])->name('user#cartList');
         });
+
+        //for user contact
+        Route::get('contact', [ContactController::class, 'contact'])->name('user#contact');
+        Route::post('contactPage', [ContactController::class, 'contactPage'])->name('user#contactPage');
     });
 });
 
