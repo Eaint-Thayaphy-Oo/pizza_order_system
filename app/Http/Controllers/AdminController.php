@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -131,6 +132,13 @@ class AdminController extends Controller
         $data = $this->requestUserData($request);
         User::where('id', $id)->update($data);
         return redirect()->route('admin#list')->with(['updateSuccess' => 'Admin Account Successfully...']);
+    }
+
+    //for admin contact
+    public function contactList()
+    {
+        $contact = Contact::orderBy('created_at', 'desc')->paginate(5);
+        return view('admin.contact.adminContact', compact('contact'));
     }
 
     //password validation check

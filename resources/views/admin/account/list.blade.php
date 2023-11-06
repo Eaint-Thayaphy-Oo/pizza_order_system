@@ -113,7 +113,7 @@
                                                 <a href="{{ route('admin#changeRole', $a->id) }}">
                                                     <button class="item" data-toggle="tooltip" data-placement="top"
                                                         title="Change Admin Role">
-                                                        <i class="fa-solid fa-person-circle"></i>
+                                                        <i class="fa-solid fa-users"></i>
                                                     </button>
                                                 </a>
                                                 {{-- <a
@@ -126,7 +126,7 @@
                                                 @if (Auth::user()->id == $a->id)
                                                 @else
                                                     <a href="{{ route('admin#delete', $a->id) }}">
-                                                        <button class="item" data-toggle="tooltip" data-placement="top"
+                                                        <button class="item ms-2" data-toggle="tooltip" data-placement="top"
                                                             title="Delete">
                                                             <i class="zmdi zmdi-delete"></i>
                                                         </button></a>

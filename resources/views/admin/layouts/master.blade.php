@@ -72,6 +72,10 @@
                             <a href="{{ route('admin#userList') }}">
                                 <i class="fas fa-users"></i>User List</a>
                         </li>
+                        <li>
+                            <a href="{{ route('admin#contactList') }}">
+                                <i class="fa-solid fa-address-book"></i></i>Contact List</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
