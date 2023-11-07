@@ -51,8 +51,8 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="{{ route('user#home') }}" class="nav-item nav-link active">Home</a>
-                            {{-- <a href="cart.html" class="nav-item nav-link">My Cart</a> --}}
+                            <a href="{{ route('user#home') }}" class="nav-item nav-link">Home</a>
+                            <a href="{{ route('user#cartList') }}" class="nav-item nav-link">My Cart</a>
                             <a href="{{ route('user#contact') }}" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
@@ -103,46 +103,54 @@
         <div class="row px-xl-5 pt-5">
             <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
                 <h5 class="text-secondary text-uppercase mb-4">Get In Touch</h5>
-                <p class="mb-4">No dolore ipsum accusam no lorem. Invidunt sed clita kasd clita et et dolor sed
-                    dolor. Rebum tempor no vero est magna amet no</p>
-                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
-                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
-                <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
+                <p class="mb-4">“It was a pleasure meeting you. I'd love to stay in touch — here is my visit card.”
+                    “I'd like to further discuss this with you — do you mind giving me your contact information?” </p>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>{{ auth()->user()->address }}
+                </p>
+                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>{{ auth()->user()->email }}</p>
+                <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>{{ auth()->user()->phone }}</p>
             </div>
             <div class="col-lg-8 col-md-12">
                 <div class="row">
                     <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">Quick Shop</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="#"><i
+                            <a class="text-secondary mb-2" href="{{ route('user#home') }}"><i
                                     class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our
+                            <a class="text-secondary mb-2" href="{{ route('user#home') }}"><i
+                                    class="fa fa-angle-right mr-2"></i>Our
                                 Shop</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shop
+                            <a class="text-secondary mb-2" href="{{ route('user#home') }}"><i
+                                    class="fa fa-angle-right mr-2"></i>Shop
                                 Detail</a>
-                            <a class="text-secondary mb-2" href="#"><i
+                            <a class="text-secondary mb-2" href="{{ route('user#cartList') }}"><i
                                     class="fa fa-angle-right mr-2"></i>Shopping
                                 Cart</a>
-                            <a class="text-secondary mb-2" href="#"><i
+                            <a class="text-secondary mb-2" href="{{ route('user#history') }}"><i
                                     class="fa fa-angle-right mr-2"></i>Checkout</a>
-                            <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>Contact
+                            <a class="text-secondary" href="{{ route('user#contact') }}"><i
+                                    class="fa fa-angle-right mr-2"></i>Contact
                                 Us</a>
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">My Account</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="#"><i
+                            <a class="text-secondary mb-2" href="{{ route('user#home') }}"><i
                                     class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our
+                            <a class="text-secondary mb-2" href="{{ route('user#home') }}"><i
+                                    class="fa fa-angle-right mr-2"></i>Our
                                 Shop</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shop
+                            <a class="text-secondary mb-2" href="{{ route('user#home') }}"><i
+                                    class="fa fa-angle-right mr-2"></i>Shop
                                 Detail</a>
-                            <a class="text-secondary mb-2" href="#"><i
-                                    class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
-                            <a class="text-secondary mb-2" href="#"><i
+                            <a class="text-secondary mb-2" href="{{ route('user#cartList') }}"><i
+                                    class="fa fa-angle-right mr-2"></i>Shopping
+                                Cart</a>
+                            <a class="text-secondary mb-2" href="{{ route('user#history') }}"><i
                                     class="fa fa-angle-right mr-2"></i>Checkout</a>
-                            <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>Contact
+                            <a class="text-secondary" href="{{ route('user#contact') }}"><i
+                                    class="fa fa-angle-right mr-2"></i>Contact
                                 Us</a>
                         </div>
                     </div>

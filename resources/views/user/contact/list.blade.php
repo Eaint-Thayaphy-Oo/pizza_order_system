@@ -38,8 +38,8 @@
                             @enderror
                         </div>
                         <div class="control-group">
-                            <textarea class="form-control @error('contactMessage') is-invalid @enderror" rows="8" name="contactMessage" id="message"
-                                placeholder="Message"></textarea>
+                            <textarea class="form-control @error('contactMessage') is-invalid @enderror" rows="8" name="contactMessage"
+                                id="message" placeholder="Message"></textarea>
                             <p class="help-block text-danger"></p>
                             @error('contactMessage')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -56,14 +56,15 @@
             <div class="col-lg-5 mb-5">
                 <div class="bg-light p-30 mb-30">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15445263.817452364!2d96.68303!3d19.07181!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2smm!4v1699240524780!5m2!1sen!2smm"
-                        width="620" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15445263.817452364!2d96.68303!3d19.07181!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2smm!4v1699360521065!5m2!1sen!2smm"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div class="bg-light p-30 mb-3">
-                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
-                    <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>{{ auth()->user()->address }}
+                    </p>
+                    <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>{{ auth()->user()->email }}</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt text-primary mr-3"></i>{{ auth()->user()->phone }}</p>
                 </div>
             </div>
         </div>

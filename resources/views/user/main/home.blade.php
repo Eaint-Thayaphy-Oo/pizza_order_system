@@ -82,7 +82,8 @@
                                             <img class="img-fluid w-100" style="height: 350px"
                                                 src="{{ asset('storage/' . $p->image) }}" alt="">
                                             <div class="product-action">
-                                                <a class="btn btn-outline-dark btn-square" href=""><i
+                                                <a class="btn btn-outline-dark btn-square"
+                                                    href="{{ route('user#cartList') }}"><i
                                                         class="fa fa-shopping-cart"></i></a>
                                                 <a class="btn btn-outline-dark btn-square"
                                                     href="{{ route('user#pizzaDetails', $p->id) }}"><i

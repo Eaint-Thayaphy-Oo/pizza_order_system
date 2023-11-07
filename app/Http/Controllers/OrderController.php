@@ -28,9 +28,9 @@ class OrderController extends Controller
             ->orderBy('created_at', 'desc');
 
         if ($request->orderStatus == null) {
-            $order = $order->get();
+            $order = $order->paginate(5);
         } else {
-            $order = $order->where('orders.status', $request->orderStatus)->get();
+            $order = $order->where('orders.status', $request->orderStatus)->paginate(5);
         }
 
         return view('admin.order.list', compact('order'));

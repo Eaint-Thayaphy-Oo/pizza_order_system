@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\User;
+
 use function Ramsey\Uuid\v1;
 
 use Illuminate\Http\Request;
@@ -23,6 +25,9 @@ class ContactController extends Controller
         // dd($request->all());
         $this->validationContact($request);
         $data = $this->getContactData($request);
+        // $user = User::get();
+        // dd($user->toArray());
+        // dd($user->address);
 
         Contact::create($data);
         // dd($contact->toArray());
