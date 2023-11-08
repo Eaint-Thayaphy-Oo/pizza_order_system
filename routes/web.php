@@ -179,3 +179,10 @@ Route::middleware(['admin_auth'])->group(function () {
 // Route::group(['prefix' => 'category'], function () {
 //     Route::get('list', [CategoryController::class, 'list'])->name('category#list');
 // });
+
+// Route::get('webTesting', function () {
+//     $data = [
+//         'message' => 'This is testing message'
+//     ];
+//     return response()->json($data, 200);
+// });
